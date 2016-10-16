@@ -3,7 +3,7 @@ library(tidyverse)
 raw_data <- read_csv(file="raw_data.csv")
 #sex is num, and it's a categorical variable, 1=male and 2=female
 
-
+#NOT SURE WHY THE BELOW SYNTAX WORKED BUT IT DIDNT WHEN I DID THE CATEGORICAL VARIABLES WAY
 raw_data$sex <- as.factor(raw_data$sex)
 levels(raw_data$sex) <- list("Male"=1,"Female"=2)
 
@@ -72,7 +72,13 @@ View(analytic_data_female)
 #save it
 write_csv(analytic_data_female,path="analytic_data_female.csv")
 
+#TABLES AND GRAPHS 
 
+#correlation tables
+library(apaTables)
+apa.cor.table(analytic_data, filename = "Table_1_Overall.doc", table.number = 1)
+apa.cor.table(analytic_data_male, filename = "Table_2_Male.doc", table.number = 2)
+apa.cor.table(analytic_data_female, filename = "Table_3_Female.doc", table.number = 3)
 
 
 
