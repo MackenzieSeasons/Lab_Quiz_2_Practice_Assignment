@@ -80,6 +80,35 @@ apa.cor.table(analytic_data, filename = "Table_1_Overall.doc", table.number = 1)
 apa.cor.table(analytic_data_male, filename = "Table_2_Male.doc", table.number = 2)
 apa.cor.table(analytic_data_female, filename = "Table_3_Female.doc", table.number = 3)
 
+#correlation graphs, see correlations in R handout
+psych::pairs.panels(as.data.frame(analytic_data),lem=TRUE)
+psych::pairs.panels(as.data.frame(analytic_data_male),lem=TRUE)
+psych::pairs.panels(as.data.frame(analytic_data_female),lem=TRUE)
+#save by exporting to TIFF file in plots section
+
+#making a histogram of neuroticism scores
+my.hist <- ggplot(analytic_data_female,aes(Neuroticism))
+my.hist <- my.hist + geom_histogram(aes(Neuroticism))
+print(my.hist)
+#add labels
+my.hist <- ggplot(analytic_data_female,aes(Neuroticism))
+my.hist <- my.hist + geom_histogram(aes(y=..count..),binwidth = 1, fill="black",color="black")
+my.hist <- my.hist + labs(title="Figure_4_Neuroticism_Histogram_Female.tiff",x="Neuroticism",y="Frequency")
+print(my.hist)
+#adjusting x axis
+my.hist <- ggplot(analytic_data_female,aes(Neuroticism))
+my.hist <- my.hist + geom_histogram(aes(y=..count..),binwidth = 1, fill="black",color="black")
+my.hist <- my.hist + labs(title="Figure_4_Neuroticism_Histogram_Female.tiff",x="Neuroticism",y="Frequency")
+my.hist <- my.hist + coord_cartesian(xlim=c(0,25), ylim=c(0,1200))
+#APA style
+my.hist <- my.hist + theme_classic()
+my.hist <- my.hist + theme(axis.line.x = element_line(colour = 'black', size=0.5, linetype = 'solid'), axis.line.y=element_line(colour = 'black', size=0.5, linetype = 'solid'))
+#changing the binwidth
+my.hist <- my.hist + scale_x_continuous(breaks = seq(0,25,by=5))
+my.hist <- my.hist + scale_y_continuous(expand=c(0,0))
+print(my.hist)
+
+
 
 
 
